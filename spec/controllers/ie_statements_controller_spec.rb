@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe IeStatementsController, type: :controller do
   let(:user) { create(:user) }
-  let(:ie_statement) { create(:ie_statement, user: user.id) }
+  let(:ie_statement) { create(:ie_statement, user: user) }
 
   before do
     sign_in user
@@ -27,7 +27,7 @@ RSpec.describe IeStatementsController, type: :controller do
 
   describe 'GET #show' do
     it 'returns http success' do
-      get :show, params: { id: @ie_statement.id }
+      get :show, params: { id: ie_statement.id }
       expect(response).to have_http_status(:success)
     end
   end
