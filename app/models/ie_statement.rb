@@ -3,19 +3,21 @@
 class IeStatement < ApplicationRecord
   belongs_to :user
 
-  before_save :calculate_disposable_income_and_rating
+  validates :income, presence: true
+  validates :expenditure, presence: true
 
-  private
+  def disposable_income
+    income - expenditure
+  end
 
-  def calculate_disposable_income_and_rating
-    self.disposable_income = income - expenditure
+  def rating
     ratio = expenditure / income
 
-    self.rating = case ratio
-                  when 0..0.1 then 'A'
-                  when 0.1..0.3 then 'B'
-                  when 0.3..0.5 then 'C'
-                  else 'D'
-                  end
+    case ratio
+    when 0..0.1 then 'A'
+    when 0.1..0.3 then 'B'
+    when 0.3..0.5 then 'C'
+    else 'D'
+    end
   end
 end

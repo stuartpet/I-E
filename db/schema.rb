@@ -15,8 +15,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_17_201329) do
     t.integer "user_id", null: false
     t.decimal "income"
     t.decimal "expenditure"
-    t.decimal "disposable_income"
-    t.string "rating"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_ie_statements_on_user_id"

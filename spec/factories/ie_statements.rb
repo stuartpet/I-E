@@ -2,10 +2,8 @@
 
 FactoryBot.define do
   factory :ie_statement do
-    user_id {  }
+    user {}
     income { 10_000 }
     expenditure { 9_333 }
-    disposable_income { 200 }
-    rating { 'D' }
   end
 end

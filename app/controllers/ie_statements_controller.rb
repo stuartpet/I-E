@@ -15,7 +15,7 @@ class IeStatementsController < ApplicationController
     @ie_statement = current_user.ie_statements.new(ie_statement_params)
 
     if @ie_statement.save
-      render json: @ie_statement, status: :created
+      render json: @ie_statement.to_json(methods: %i[rating disposable_income]), status: :created
     else
       render json: { message: @ie_statement.errors }
     end
@@ -23,7 +23,7 @@ class IeStatementsController < ApplicationController
 
   # GET /ie_statements/:id
   def show
-    render json: @ie_statement
+    render json: @ie_statement.to_json(methods: %i[rating disposable_income])
   end
 
   private
